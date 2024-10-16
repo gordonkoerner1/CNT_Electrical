@@ -43,21 +43,60 @@ function [displacements,Fpush] = solution_inactivesAN(GDof,K,numberBeams,E,A,ang
     F(activeDof) = -K(activeDof,prescribedDof)*U(prescribedDof);
 
     % calculate displacements of upper nodes based on forces at bottom nodes (for all DOFs)
+    mat = K(activeDof,activeDof);
+    b = F(activeDof);
+    
+    % initialization of a matlab MUMPS structure
+    id = initmumps;
+    id.SYM = 1;
+    
+    % here JOB = -1, the call to MUMPS will initialize C 
+    % and fortran MUMPS structure
+    id = dmumps(id);
+    % load a sparse matrix
+    % load lhr01;
+    % mat = Problem.A;
+    % JOB = 6 means analysis+facto+solve
+    
+    %prob = UFget(373);
+    %mat = prob.A;
+    id.JOB = 6;
+    %%%%%%% BEGIN OPTIONAL PART TO ILLUSTRATE THE USE OF MAXIMUM TRANSVERSAL
+    id.ICNTL(7) = 2;
+    id.ICNTL(6) = 7;
+    id.ICNTL(8) = 8;
+    id.ICNTL(14) = 30;
+    % set the right hand side
+    id.RHS = b;
+    %call to mumps
+    id = dmumps(id,mat);
+    % % we see that there is a memory problem in INFOG(1) and INFOG(2)
+    % id.INFOG(1)
+    % id.INFOG(2)
+    % % we activate the numerical maximun transversal 
+    % fprintf('total number of nonzeros in factors %d\n', id.INFOG(10));
+    % 
+    % %%%%%%% END OPTIONAL PART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % if(norm(mat*id.SOL - ones(size(mat,1),1),'inf') > sqrt(eps))
+    % 	disp('WARNING : precision may not be OK');
+    % else
+    % 	disp('SOLUTION OK');
+    % end
+    % norm(mat*id.SOL - ones(size(mat,1),1),'inf')
+    % destroy mumps instance
+    U(activeDof) = id.SOL;
+    id.JOB = -2;
+    id = dmumps(id);
    
-    S = tril(K(activeDof,activeDof),-1)+tril(K(activeDof,activeDof))';
-    U(activeDof) = S\(F(activeDof));
-
+    %%% BEAM ANGLE DISPLACEMENTS found to be HUGE for delaminated cnts   
+    %     if t == 13
+    %         error('delam check')
+    %             % cnt 171 delaminates at t=13s (stop at t=12s before reposition)
+    %             % cnt 73 delaminates at t=17s (stop at t=16s before reposition)
+    %     end
+     
     % displacements along each DOF for all nodes (active & inactive)
     displacements = U;
-   
-%%% BEAM ANGLE DISPLACEMENTS found to be HUGE for delaminated cnts   
-%     if t == 13
-%         error('delam check')
-%             % cnt 171 delaminates at t=13s (stop at t=12s before reposition)
-%             % cnt 73 delaminates at t=17s (stop at t=16s before reposition)
-%     end
-     
-    % Fpush(prescribedDof) = K(prescribedDof,:)*U;
 
     % forces at all bottom nodes (active & inactive)
     Fpush = K((GDof-6*numberBeams+1):GDof,:)*U;
