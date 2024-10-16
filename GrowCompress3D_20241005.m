@@ -1,5 +1,6 @@
 %function GrowCompress3D_20241005(inputs)
 clear
+addpath('/usr/src/MUMPS_5.7.3/MATLAB/')
 warning('off','all')
 
 E = 0.8e12; G = 5e11; % [Pa] CNT elastic modulus  
@@ -7,7 +8,7 @@ E = 0.8e12; G = 5e11; % [Pa] CNT elastic modulus
 beamType = 0; % 0 = Euler Beam; 1 = Timoshenko Beam
 compressiveLoad = 0;
 
-fname = '/home/gordo/Documents/CNT/Images/Junk/'; %% File Path for Saving Results
+fname = '/home/maschmann/Documents/MATLAB/images/junk/'; %% File Path for Saving Results
 
 % fname2 = strcat(fname,'TrackMatrixData\');
 % fname3 = strcat(fname,'ResistanceData\');
@@ -25,11 +26,11 @@ fname5 = strcat(fname,char(startTime2),'.csv');
 % v_span = paramat(run,3)*1e-6;                   % m
 % electrodeWidth = paramat(run,4)*1e-6;           % m
 
-steps = 100;
+steps = 1000;
 plotint = 50;
 
-Pcritical = 1.6e7;                 % Pa
-density_factor = 0.5;              % 1e10 CNT/cm2
+Pcritical = 1.6e8;                 % Pa
+density_factor = 0.7;              % 1e10 CNT/cm2
 rate_stdev = 0.2;                  % This is now for a log-normal distribution
 h_span = 5*1e-6;                   % m
 v_span = 15*1e-6;                  % m
