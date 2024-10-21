@@ -1,12 +1,12 @@
 %% This samples ro from a normal and ri from a log-normal distribution
 %
-function [ro,ri]=sample_radius(numberBeams)
+function [ro,ri]=sample_radius(numberBeams,mu_ro,sigma_ro,shape_ri,scale_ri)
 
-mu_ro = 12.34;   % Corrected mean value
-sigma_ro = 3.46;  % Corrected standard deviation
-
-shape_ri = 0.25;  % Corrected shape value
-scale_ri = 6.37;  % Corrected scale value
+% mu_ro = 12.34;   % Corrected mean value
+% sigma_ro = 3.46;  % Corrected standard deviation
+% 
+% shape_ri = 0.25;  % Corrected shape value
+% scale_ri = 6.37;  % Corrected scale value
 
 % Define the range for t = ro - ri
 t_min = 0.90;  % Minimum allowed value for t
