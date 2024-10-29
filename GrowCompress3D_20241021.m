@@ -9,7 +9,7 @@ beamType = 0; % 0 = Euler Beam; 1 = Timoshenko Beam
 compressiveLoad = 0;
 
 % fname = '/home/maschmann/Documents/MATLAB/images/junk/'; %% File Path for Saving Results
-fname = '/mnt/pixstor/data/glkxr9';
+fname = '/mnt/pixstor/data/glkxr9/';
 
 % fname2 = strcat(fname,'TrackMatrixData\');
 % fname3 = strcat(fname,'ResistanceData\');
