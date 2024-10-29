@@ -18,5 +18,5 @@ function K_Elect = PlaneFrameElec(A,L,elementNodes,GDof,conductivity,nodeCount,n
         Gg(3,:) = -g';
         Gg(4,:) = g';
         
-        %K_Elect = sparse(jj_local_heat(:), ii_local_heat(:), Gg(:), nodeCount+2, nodeCount+2);
-        K_Elect = fsparse(jj_local_heat(:), ii_local_heat(:), Gg(:),[nodeCount+2, nodeCount+2]);
+        K_Elect = sparse(jj_local_heat(:), ii_local_heat(:), Gg(:), nodeCount+2, nodeCount+2);
+        %K_Elect = fsparse(jj_local_heat(:), ii_local_heat(:), Gg(:),[nodeCount+2, nodeCount+2]);
