@@ -83,7 +83,7 @@ function [Ac,vdwk]=ConnectionStiffness_3D_mod3(closeNodes,GDof,beamType,nodeCoor
    
        
    
-    %Ac=sparse(jj_local(:), ii_local(:), Kg(:), GDof, GDof);
+    Ac=sparse(jj_local(:), ii_local(:), Kg(:), GDof, GDof);
  %%AA=sparse(ii_local(:), jj_local(:), Kg(:), GDof, GDof);
-    Ac=fsparse(jj_local(:), ii_local(:), Kg(:),[GDof,GDof]);
+    %Ac=fsparse(jj_local(:), ii_local(:), Kg(:),[GDof,GDof]);
  
