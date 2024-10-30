@@ -19,5 +19,5 @@ function [Aelect]=ConnectionElect_ElectrodesR(rightContacts,nodeCount)
    Kg(3,:)= -ConnectionResistance;
    Kg(4,:)= ConnectionResistance;
    
-Aelect=sparse(jj_local(:), ii_local(:), Kg(:), nodeCount+2, nodeCount+2);
-%Aelect=fsparse(jj_local(:), ii_local(:), Kg(:),[nodeCount+2, nodeCount+2]);
+%Aelect=sparse(jj_local(:), ii_local(:), Kg(:), nodeCount+2, nodeCount+2);
+Aelect=fsparse(jj_local(:), ii_local(:), Kg(:),[nodeCount+2, nodeCount+2]);
