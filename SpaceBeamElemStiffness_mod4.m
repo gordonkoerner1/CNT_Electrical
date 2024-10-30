@@ -249,10 +249,10 @@ function [K,LL] = SpaceBeamElemStiffness_mod4(E,A,GDof,Ic,G,elementNodes,element
     
     
     
-    K=sparse(jj_local(:), ii_local(:), y(:),GDof,GDof);
+    %K=sparse(jj_local(:), ii_local(:), y(:),GDof,GDof);
     %K=sparse(jj_local, ii_local, y);
     
-    %K=fsparse(jj_local, ii_local, y,[GDof,GDof]);
+    K=fsparse(jj_local, ii_local, y,[GDof,GDof]);
     
     % % % K(jj_local(:), ii_local(:))=y(:);
     end
