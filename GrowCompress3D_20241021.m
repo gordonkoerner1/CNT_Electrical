@@ -1,6 +1,7 @@
 function GrowCompress3D_20241021(steps,mu_ro,sigma_ro,shape_ri,scale_ri,avgRate,rate_stdev,ang_stdev,Pcritical,density_factor)
 format long;format compact
 addpath('/usr/src/MUMPS_5.7.3/MATLAB/')
+addpath('/usr/src/MUMPS_5.7.3/MATLAB/stenglib/Fast')
 warning('off','all')
 
 E = 0.8e12; G = 5e11; % [Pa] CNT elastic modulus  
