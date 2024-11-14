@@ -436,7 +436,7 @@ for t = 1:steps % Growing CNT forest for a quantity of "steps" time steps
 
     numberActive=numberBeams-numberInactive
 
-    height(t)=mean(nodeCoordinates(:,3))*1e6;
+    height(t)=mean(nodeCoordinates(1:numberBeams,3))*1e6;
     density(t)=double(numberActive)/double(h_span*v_span*1e12);
     
     
