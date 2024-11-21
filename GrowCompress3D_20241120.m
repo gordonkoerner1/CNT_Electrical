@@ -3,7 +3,7 @@ format long;format compact
 addpath('/usr/src/MUMPS_5.7.3/MATLAB/')
 warning('off','all')
 
-dataDir = fullfile('/mnt/pixstor/data/glkxr9/',num2str(slurmID));
+dataDir = fullfile(num2str(slurmID));
 fname = strcat(dataDir,'/');
 E = 0.8e12; G = 5e11; % [Pa] CNT elastic modulus
 
