@@ -1,6 +1,7 @@
 function GrowCompress3D(slurmID,steps,rate_stdev,ang_stdev,Pcritical,density_factor)
 format long;format compact
 addpath('/usr/src/MUMPS_5.7.3/MATLAB/')
+maxNumCompThreads(16);
 warning('off','all')
 
 dataDir = fullfile(num2str(slurmID));
